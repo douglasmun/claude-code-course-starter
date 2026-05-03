@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.task-cli-data.json
+.claude/memory/
+.claude/settings.local.json
