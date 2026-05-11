@@ -2,10 +2,7 @@ import fs from "fs";
 import path from "path";
 import { Task } from "../types";
 
-const STORE_PATH = path.join(
-  process.env.HOME || "~",
-  ".task-cli-data.json"
-);
+const STORE_PATH = path.join(process.env.HOME || "~", ".task-cli-data.json");
 
 export function loadTasks(): Task[] {
   if (!fs.existsSync(STORE_PATH)) return [];
@@ -18,7 +15,5 @@ export function saveTasks(tasks: Task[]): void {
 }
 
 export function getNextId(tasks: Task[]): number {
-  return tasks.length === 0
-    ? 1
-    : Math.max(...tasks.map((t) => t.id)) + 1;
+  return tasks.length === 0 ? 1 : Math.max(...tasks.map((t) => t.id)) + 1;
 }

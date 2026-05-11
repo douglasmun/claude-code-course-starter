@@ -1,0 +1,14 @@
+[
+  {
+    "type": "ip",
+    "value": "198.51.100.42",
+    "confidence": "HIGH",
+    "tags": ["c2", "ransomware"]
+  },
+  {
+    "type": "domain",
+    "value": "update-cdn.example-bad.net",
+    "confidence": "MODERATE",
+    "tags": ["c2", "phishing", "ta-phantom"]
+  }
+]

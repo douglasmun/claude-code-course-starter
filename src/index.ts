@@ -3,6 +3,7 @@ import { Command } from "commander";
 import { addTask } from "./commands/add";
 import { listTasks } from "./commands/list";
 import { markDone } from "./commands/done";
+import { TaskPriority } from "./types";
 
 const program = new Command();
 
@@ -14,7 +15,19 @@ program
 program
   .command("add <title>")
   .description("Add a new task")
-  .action((title: string) => addTask(title));
+  .option(
+    "-p, --priority <priority>",
+    "Task priority: low, normal, or high",
+    "normal",
+  )
+  .action((title: string, options: { priority: string }) => {
+    const allowedPriorities: TaskPriority[] = ["low", "normal", "high"];
+    if (!allowedPriorities.includes(options.priority as TaskPriority)) {
+      console.error("Priority must be one of: low, normal, high.");
+      process.exit(1);
+    }
+    addTask(title, options.priority as TaskPriority);
+  });
 
 program
   .command("list")

@@ -1,0 +1,9 @@
+{
+  "name": "cowork-starter-plugin",
+  "version": "1.0.0",
+  "description": "Minimal Cowork plugin template for the Claude Code course capstone.",
+  "author": "Course Student",
+  "skills": ["skills/summarize-thread", "skills/draft-reply", "skills/campaign-brief", "skills/stakeholder-update"],
+  "commands": ["commands/daily-brief.md", "commands/weekly-product-update.md"],
+  "contextFiles": ["context/about-me.md", "context/brand-voice.md", "context/working-preferences.md"]
+}

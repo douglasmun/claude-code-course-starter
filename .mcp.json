@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "task-cli-knowledge": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "docs",
+        "cowork",
+        "CLAUDE.md"
+      ]
+    }
+  }
+}

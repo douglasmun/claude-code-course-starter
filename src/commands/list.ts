@@ -10,7 +10,10 @@ export function listTasks(): void {
     const status = t.done ? "✓" : "○";
     const style = t.done ? "\x1b[9m\x1b[2m" : "";
     const reset = "\x1b[0m";
-    console.log(`  ${status} #${t.id} ${style}${t.title}${reset}`);
+    const priority = t.priority ?? "normal";
+    console.log(
+      `  ${status} #${t.id} [${priority}] ${style}${t.title}${reset}`,
+    );
   });
   const pending = tasks.filter((t) => !t.done).length;
   console.log(`\n  ${pending} pending, ${tasks.length} total`);

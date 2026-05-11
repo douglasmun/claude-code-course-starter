@@ -30,7 +30,13 @@ See @docs/architecture.md for system boundaries.
 ## Claude Code Skills & Agents
 - `/add-feature <description>` — plans and implements a new feature end-to-end
 - `/deep-research <topic>` — forks a subagent to explore the codebase
+- `/pr-review <base-ref>` — reviews changed files for defects, tests, and policy gaps
+- `/deploy-check <environment>` — validates build, tests, docs, and release readiness
+- `/generate-adr <decision>` — writes an architecture decision record draft
 - `test-reviewer` agent — proactively reviews test coverage after feature work
+
+## MCP
+- `.mcp.json` exposes local project docs and cowork context through a filesystem MCP server.
 
 ## Don't
 - Modify the store path without updating tests

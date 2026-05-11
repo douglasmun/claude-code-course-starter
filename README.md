@@ -25,9 +25,21 @@ git clone https://github.com/douglasmun/claude-code-course-starter.git
 cd claude-code-course-starter
 npm install
 npm start -- add "My first task"
+npm start -- add "Fix production bug" --priority high
 npm start -- list
 npm start -- done 1
 ```
+
+> **Bun users:** Replace `npm install` with `bun install`, `npm start --` with `bun run src/index.ts`, and `npm test` with `bun test`. The project also ships a `bun.lock` file.
+
+## Tooling Standard
+
+| Context | Recommended | Fallback |
+|---|---|---|
+| Install Claude Code | `npm install -g @anthropic-ai/claude-code` | `brew install claude` (Mac) |
+| Project commands | `npm test`, `npm run build`, `npm run format` | `bun test`, `bun run build` |
+| Run CLI | `npm start -- <command>` | `bun run src/index.ts <command>` |
+| CI headless | `npx @anthropic-ai/claude-code -p "..."` | Docker with Node 20 image |
 
 ## Using with Claude Code
 
@@ -37,7 +49,24 @@ claude                    # start a session
 # Try: "Add a priority field to tasks"
 ```
 
+## Course Completion Artifacts
+
+This `main` branch includes a complete course submission:
+
+- Project memory: `CLAUDE.md`, `.claudeignore`, and `docs/architecture.md`
+- Custom skills: `.claude/skills/add-feature`, `pr-review`, `deploy-check`, and `generate-adr`
+- Custom agent: `.claude/agents/test-reviewer.md`
+- Hooks: `.claude/settings.json` plus reusable hook scripts in `.claude/hooks/`
+- MCP configuration: `.mcp.json`
+- Plugin package: `plugin/`
+- Cowork context and plugin package: `cowork/`
+- CI/headless Claude workflow: `.github/workflows/claude-review.yml`
+- Completion evidence: `docs/course/completion-matrix.md`
+
+Reviewers: run `npm test && npm run build` to confirm the code works, then cross-reference each item in `docs/course/completion-matrix.md` with the file path listed.
+
 ## Companion Resources
 
 - [Course](https://douglasmun.github.io/claude-code-course.html)
 - [Cheat Sheet](https://douglasmun.github.io/claude-code-cheatsheet-v1.0.html)
+- [Capstone Evidence Guide](docs/course/capstone-evidence-guide.md)

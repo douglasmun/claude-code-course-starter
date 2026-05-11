@@ -8,6 +8,7 @@
     "build": "tsc",
     "start": "ts-node src/index.ts",
     "test": "jest --passWithNoTests",
+    "test:bun": "bun test __tests__/*.bun.test.ts",
     "test:watch": "jest --watch",
     "lint": "eslint src/ --ext .ts",
     "format": "prettier --write 'src/**/*.ts'"

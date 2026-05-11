@@ -17,18 +17,35 @@ describe("addTask", () => {
       expect.objectContaining({
         id: 1,
         title: "Buy milk",
+        priority: "normal",
         done: false,
       }),
     ]);
   });
 
   it("auto-increments IDs and preserves existing tasks", () => {
-    const existing = { id: 1, title: "Existing", done: false, createdAt: "" };
+    const existing = {
+      id: 1,
+      title: "Existing",
+      priority: "normal" as const,
+      done: false,
+      createdAt: "",
+    };
     mockLoad.mockReturnValue([existing]);
     addTask("New task");
     expect(mockSave).toHaveBeenCalledWith([
       existing,
-      expect.objectContaining({ id: 2, title: "New task" }),
+      expect.objectContaining({ id: 2, title: "New task", priority: "normal" }),
+    ]);
+  });
+
+  it("stores the requested priority", () => {
+    addTask("Fix production bug", "high");
+    expect(mockSave).toHaveBeenCalledWith([
+      expect.objectContaining({
+        title: "Fix production bug",
+        priority: "high",
+      }),
     ]);
   });
 });
