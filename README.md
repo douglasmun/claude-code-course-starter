@@ -36,10 +36,12 @@ npm start -- done 1
 
 | Context | Recommended | Fallback |
 |---|---|---|
-| Install Claude Code | `npm install -g @anthropic-ai/claude-code` | `brew install claude` (Mac) |
+| Install Claude Code | `curl -fsSL https://claude.ai/install.sh \| sh` | `brew install claude` (Mac) |
 | Project commands | `npm test`, `npm run build`, `npm run format` | `bun test`, `bun run build` |
 | Run CLI | `npm start -- <command>` | `bun run src/index.ts <command>` |
 | CI headless | `npx @anthropic-ai/claude-code -p "..."` | Docker with Node 20 image |
+
+> `npm install -g @anthropic-ai/claude-code` is deprecated. Use the native binary above.
 
 ## Using with Claude Code
 

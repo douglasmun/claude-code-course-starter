@@ -32,7 +32,7 @@ See @docs/architecture.md for system boundaries.
 - `/deep-research <topic>` — forks a subagent to explore the codebase
 - `/pr-review <base-ref>` — reviews changed files for defects, tests, and policy gaps
 - `/deploy-check <environment>` — validates build, tests, docs, and release readiness
-- `/generate-adr <decision>` — writes an architecture decision record draft
+- `/generate-adr <decision>` — Draft an architecture decision record draft for task-cli changes
 - `test-reviewer` agent — proactively reviews test coverage after feature work
 
 ## MCP

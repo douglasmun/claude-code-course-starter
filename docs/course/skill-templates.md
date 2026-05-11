@@ -76,7 +76,7 @@ Type classification: `$ARGUMENTS` drives the entire task. The user provides the 
 
 ---
 
-## Example 3: `context:fork` Skill (`deploy-check`)
+## Example 3: `$ARGUMENTS` + `context:fork`-Ready Skill (`deploy-check`)
 
 This is the actual `.claude/skills/deploy-check/SKILL.md`. It is designed as a **`context:fork`** candidate: it reads multiple files, runs multiple commands, and produces a structured report. Running it in a subagent keeps the parent context clean.
 
@@ -115,3 +115,5 @@ context: fork
 ...
 ---
 ```
+
+This skill uses `$ARGUMENTS` and is ready to be upgraded to `context:fork` by adding `context: fork` to the frontmatter. See `deep-research` for a fully wired `context:fork` example.

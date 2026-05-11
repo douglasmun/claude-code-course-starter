@@ -111,3 +111,13 @@ exit 0
 ---
 
 Copy these scripts into `.claude/hooks/` in any new project and reference them in `.claude/settings.json`.
+
+## Available Hook Environment Variables
+
+| Variable | Available in | Description |
+|---|---|---|
+| `CLAUDE_FILE_PATH` | PostToolUse (Edit/Write) | Absolute path of the file just written |
+| `CLAUDE_TOOL_INPUT` | PreToolUse (Bash) | The command string about to be run |
+| `CLAUDE_SESSION_ID` | All hooks | Unique ID for the current session |
+| `CLAUDE_PROJECT_DIR` | All hooks | Root directory of the current project |
+| `CLAUDE_TOOL_NAME` | All hooks | Name of the tool being invoked |
