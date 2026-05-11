@@ -17,7 +17,7 @@ jobs:
           username: ${{ secrets.NOTIFY_EMAIL_USER }}
           password: ${{ secrets.NOTIFY_EMAIL_PASS }}
           subject: "[Course] New discussion: ${{ github.event.discussion.title }}"
-          to: douglasmun@yahoo.com
+          to: ${{ secrets.NOTIFY_EMAIL_TO }}
           from: ${{ secrets.NOTIFY_EMAIL_USER }}
           body: |
             A new discussion was posted in the Claude Code Course community.

@@ -193,20 +193,32 @@ function checkMcpJson() {
 
 function checkPluginJson() {
   const { valid, data } = isValidJSON('plugin/.claude-plugin/plugin.json');
-  if (valid && data) return { pass: true };
-  return {
-    pass: false,
-    hint: 'Create plugin/.claude-plugin/plugin.json as valid JSON.',
-  };
+  if (!valid || !data) {
+    return { pass: false, hint: 'Create plugin/.claude-plugin/plugin.json as valid JSON.' };
+  }
+  const missing = ['name', 'version', 'author'].filter(k => !data[k]);
+  if (missing.length > 0) {
+    return { pass: false, hint: `plugin.json is missing required fields: ${missing.join(', ')}.` };
+  }
+  return { pass: true };
 }
 
 function checkGithubWorkflows() {
   const ymls = filesWithExt('.github/workflows', '.yml');
-  if (ymls.length >= 1) return { pass: true };
-  return {
-    pass: false,
-    hint: 'Add at least one .yml workflow file in .github/workflows/.',
-  };
+  if (ymls.length < 1) {
+    return { pass: false, hint: 'Add at least one .yml workflow file in .github/workflows/.' };
+  }
+  const hasClaudeWorkflow = ymls.some(file => {
+    const text = readText(`.github/workflows/${file}`);
+    return text && text.includes('ANTHROPIC_API_KEY') && text.includes('claude');
+  });
+  if (!hasClaudeWorkflow) {
+    return {
+      pass: false,
+      hint: 'At least one workflow must reference ANTHROPIC_API_KEY and call claude.',
+    };
+  }
+  return { pass: true };
 }
 
 // ---------------------------------------------------------------------------
@@ -239,11 +251,14 @@ function checkCoworkWorkingPreferences() {
 
 function checkCoworkPlugin() {
   const { valid, data } = isValidJSON('cowork/plugin/.claude-plugin/plugin.json');
-  if (valid && data) return { pass: true };
-  return {
-    pass: false,
-    hint: 'Create cowork/plugin/.claude-plugin/plugin.json as valid JSON.',
-  };
+  if (!valid || !data) {
+    return { pass: false, hint: 'Create cowork/plugin/.claude-plugin/plugin.json as valid JSON.' };
+  }
+  const missing = ['name', 'version', 'author'].filter(k => !data[k]);
+  if (missing.length > 0) {
+    return { pass: false, hint: `cowork plugin.json is missing required fields: ${missing.join(', ')}.` };
+  }
+  return { pass: true };
 }
 
 // ---------------------------------------------------------------------------

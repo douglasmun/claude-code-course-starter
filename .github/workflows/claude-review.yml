@@ -8,14 +8,25 @@ jobs:
       - name: Install Claude Code
         run: curl -fsSL https://claude.ai/install.sh | bash
       - name: Run review
+        id: claude_review
         run: |
-          claude -p "Review the diff in this PR for:
+          REVIEW=$(claude -p "Review the diff in this PR for:
           1. Security issues
           2. Missing or broken tests
           3. TypeScript strict mode violations
           4. Violations of CLAUDE.md conventions
           Post findings as a structured checklist." \
           --max-budget-usd 2 \
-          --max-turns 10
+          --max-turns 10)
+          echo "REVIEW_BODY<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$REVIEW" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Post review comment
+        run: |
+          gh pr comment "${{ github.event.pull_request.number }}" \
+            --body "${{ steps.claude_review.outputs.REVIEW_BODY }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
