@@ -72,3 +72,4 @@ Reviewers: run `npm test && npm run build` to confirm the code works, then cross
 - [Course](https://douglasmun.github.io/claude-code-course.html)
 - [Cheat Sheet](https://douglasmun.github.io/claude-code-cheatsheet-v1.0.html)
 - [Capstone Evidence Guide](docs/course/capstone-evidence-guide.md)
+- [Reference Capstone](docs/course/reference-capstone-notes.md) — annotated passing submission with self-check
